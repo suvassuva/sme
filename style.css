@@ -1,0 +1,886 @@
+/* style.css */
+
+/* General Styles & Variables */
+:root {
+    --primary-color: #28a745; /* Green */
+    --primary-dark: #1e7e34; /* Darker Green for hover */
+    --secondary-color: #343a40; /* Black/Dark Gray */
+    --secondary-light: #495057; /* Lighter Dark Gray */
+    --accent-color: #ffffff; /* White */
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --border-color: #dee2e6;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --transition-speed: 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.section-padding-small {
+    padding: 40px 0;
+}
+
+/* Header */
+.header {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-contact-info {
+    background-color: var(--secondary-light);
+    padding: 10px 0;
+    font-size: 0.85em;
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-contact-info .container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.header-contact-info p {
+    display: flex;
+    align-items: center;
+}
+
+.header-contact-info p i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.header-contact-info a {
+    color: var(--accent-color);
+    transition: color var(--transition-speed);
+}
+
+.header-contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.main-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo h1 {
+    font-size: 2em;
+    margin: 0;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 30px;
+    position: relative; /* For dropdown */
+}
+
+.navbar ul li a {
+    color: var(--accent-color);
+    font-weight: bold;
+    padding: 10px 0;
+    display: block;
+    transition: color var(--transition-speed);
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--secondary-color);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    z-index: 1;
+    border-top: 3px solid var(--primary-color);
+    animation: fadeIn 0.3s forwards;
+}
+
+.dropdown-content a {
+    color: var(--accent-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--secondary-light);
+    color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+/* Hero Section (Image Slider) */
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 70vh; /* Adjust height as needed */
+    min-height: 450px;
+    display: flex; /* Helps vertically center slider-text */
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-container {
+    display: flex;
+    width: 700%; /* Number of images * 100% */
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slider-image {
+    width: 100vw; /* Occupy full viewport width */
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%); /* Darken image for better text readability */
+    animation: zoomOut 8s infinite alternate; /* Subtle zoom effect */
+}
+
+.slider-text {
+    position: absolute;
+    color: var(--accent-color);
+    text-align: center;
+    z-index: 1;
+    animation: slideInUp 1s ease-out;
+}
+
+.slider-text h2 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    color: var(--accent-color); /* Override h2 color */
+}
+
+.slider-text p {
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 30px;
+    z-index: 10;
+}
+
+.slider-controls button {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: var(--accent-color);
+    border: none;
+    padding: 12px 18px;
+    font-size: 1.8em;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.slider-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* About Us Section */
+.about-us-section {
+    background-color: var(--accent-color);
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.about-text p:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex: 0 0 400px; /* Fixed width for image */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Why Choose Us Section */
+.why-choose-us-section {
+    background-color: var(--light-gray);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background-color: var(--accent-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    border-top: 5px solid var(--primary-color);
+    transition: transform var(--transition-speed);
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-item i {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    transition: color var(--transition-speed);
+}
+
+.feature-item:hover i {
+    color: var(--primary-dark);
+}
+
+.feature-item h3 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.feature-item p {
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/* Services Details Section */
+.services-section {
+    background-color: var(--accent-color);
+}
+
+.service-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-detail-item {
+    background-color: var(--light-gray);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    border-bottom: 5px solid var(--primary-color);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.service-detail-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-detail-item i {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.service-detail-item h3 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.service-detail-item p {
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    text-align: center;
+    overflow: hidden; /* For smooth slider transitions */
+}
+
+.testimonials-section h2 {
+    color: var(--accent-color);
+}
+
+.testimonials-section h2::after {
+    background-color: var(--accent-color);
+}
+
+.testimonial-slider {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    margin-bottom: 30px;
+    width: 300%; /* Number of testimonials * 100% */
+}
+
+.testimonial-item {
+    flex-shrink: 0;
+    width: 100%; /* Each item takes full width of its parent */
+    padding: 20px;
+}
+
+.testimonial-item p {
+    font-size: 1.3em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: italic;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-item h4 {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--light-gray);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background-color: var(--accent-color);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.contact-form-container, .map-container {
+    padding: 20px;
+}
+
+.contact-form-container h3, .map-container h3 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Media Section */
+.social-media-section {
+    text-align: center;
+    background-color: var(--medium-gray);
+    border-top: 1px solid var(--border-color);
+}
+
+.social-media-section h3 {
+    font-size: 1.8em;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icons a {
+    font-size: 3em;
+    color: var(--secondary-color);
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* WhatsApp Chat Popup Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366; /* WhatsApp Green */
+    color: var(--accent-color);
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 1100;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.15);
+    background-color: #1DA851;
+}
+
+/* Back to Top Button */
+#backToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 999;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+#backToTopBtn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+
+/* Footer */
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+    border-top: 5px solid var(--primary-color);
+}
+
+.footer p {
+    margin-bottom: 5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomOut {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .main-header-content {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .navbar ul {
+        gap: 15px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        flex: none;
+        width: 100%;
+        max-width: 500px; /* Constrain image on smaller screens */
+        margin-top: 30px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-contact-info .container {
+        justify-content: center;
+        gap: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-header-content {
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .logo h1 {
+        font-size: 1.6em;
+    }
+
+    .navbar {
+        display: none; /* Hidden by default for mobile */
+        width: 100%;
+        background-color: var(--secondary-color);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        animation: fadeIn 0.3s forwards;
+    }
+
+    .navbar.active {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar ul li:last-child {
+        border-bottom: none;
+    }
+
+    .navbar ul li a {
+        padding: 15px;
+    }
+
+    /* Dropdown in mobile menu */
+    .dropdown .dropdown-content {
+        position: static; /* Allows it to flow within the mobile menu */
+        box-shadow: none;
+        border-top: none;
+        background-color: var(--secondary-light); /* Slightly different background */
+        width: 100%;
+        padding-left: 20px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block; /* Force display on touch/hover */
+    }
+
+    .dropdown-content a {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hero {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .slider-text h2 {
+        font-size: 2.5em;
+    }
+
+    .slider-text p {
+        font-size: 1.2em;
+    }
+
+    .slider-controls button {
+        padding: 8px 12px;
+        font-size: 1.4em;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    .feature-item, .service-detail-item {
+        padding: 25px;
+    }
+
+    .feature-item i, .service-detail-item i {
+        font-size: 3em;
+    }
+
+    .testimonial-item p {
+        font-size: 1.1em;
+    }
+
+    .whatsapp-button {
+        width: 55px;
+        height: 55px;
+        font-size: 2.2em;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    #backToTopBtn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2em;
+        bottom: 20px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-contact-info p {
+        font-size: 0.75em;
+    }
+
+    .logo h1 {
+        font-size: 1.4em;
+    }
+
+    .hero {
+        height: 40vh;
+        min-height: 280px;
+    }
+
+    .slider-text h2 {
+        font-size: 1.8em;
+    }
+
+    .slider-text p {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .social-icons a {
+        font-size: 2.5em;
+    }
+
+    .testimonial-item p {
+        font-size: 1em;
+    }
+}
